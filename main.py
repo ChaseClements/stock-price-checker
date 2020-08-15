@@ -139,6 +139,10 @@ def email_notifs():
 
 # Function that determines if the market is open
 def market_open():
+    weekday = datetime.today().weekday()                        # Get the day of the week
+    if weekday == 5 or weekday == 6:                            # If the weekday is saturday or sunday
+        return False                                            # The market must be closed
+
     est = pytz.timezone('America/New_York')                     # Set the time zone to EST
     current_time = datetime.now(est)                            # Get the current time in EST
     current_hour = int(current_time.hour)                       # Get the current hour
